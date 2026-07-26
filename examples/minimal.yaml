@@ -1,0 +1,6 @@
+target_dir: "/tmp/umt-minimal"
+modules:
+  system:
+    enabled: true
+  home:
+    enabled: true

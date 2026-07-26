@@ -1,0 +1,28 @@
+version: "0.1.0"
+target_dir: "/mnt/usb-data"
+compression: "gzip"
+verify_checksums: true
+
+system:
+  min_disk_space_gb: 10
+  allowed_ubuntu_versions: ["24.04", "26.04"]
+
+modules:
+  system:
+    enabled: true
+  packages:
+    enabled: true
+  home:
+    enabled: true
+  docker:
+    enabled: true
+  databases:
+    enabled: true
+  jetbrains:
+    enabled: true
+  python:
+    enabled: true
+  node:
+    enabled: true
+  security:
+    enabled: true
