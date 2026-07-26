@@ -5,7 +5,6 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Подключение библиотек по абсолютному пути
 source "$SCRIPT_DIR/lib/logger.sh"
 source "$SCRIPT_DIR/lib/config.sh"
 source "$SCRIPT_DIR/lib/utils.sh"
@@ -113,8 +112,10 @@ case "$ACTION" in
         done
         if [[ "$DRY_RUN" -eq 0 ]]; then
             generate_reports "$TARGET_DIR"
+            log_info "Автоматический запуск верификации созданных файлов..."
+            verify_backup_integrity "$TARGET_DIR"
         fi
-        log_info "Резервное копирование успешно завершено!"
+        log_info "Резервное копирование и проверка успешно завершены!"
         ;;
 
     restore)
@@ -127,9 +128,7 @@ case "$ACTION" in
         ;;
 
     verify)
-        log_info "Проверка целостности архивов и манифестов..."
-        find "$TARGET_DIR" -name "*.sha256" -exec sha256sum -c {} \;
-        log_info "Проверка целостности успешно завершена!"
+        verify_backup_integrity "$TARGET_DIR"
         ;;
 
     *)
