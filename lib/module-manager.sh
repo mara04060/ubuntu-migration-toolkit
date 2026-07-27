@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ALL_MODULES=("system" "packages" "home" "docker" "databases" "jetbrains" "python" "node" "security")
+ALL_MODULES=("mail" "system" "packages" "home" "docker" "databases" "jetbrains" "python" "node" "security")
 
 is_module_selected() {
     local mod="$1"
